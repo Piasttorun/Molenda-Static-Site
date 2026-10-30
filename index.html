@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mateusz Molenda</title>
+<meta name="description" content="Mateusz Molenda, DevOps, platform and cloud engineer at NatWest Group, London.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single bento board of tiles on a night-blue ground — identity tile leads, terminal and clock tiles add texture, links close it out. Deliberately single-theme (night). */
+:root {
+  --night: #0b1428;
+  --night-2: #111d38;
+  --night-3: #18274a;
+  --line: #24365f;
+  --cream: #f3e9d2;
+  --cream-dim: #c9bfa8;
+  --muted: #8f9bb8;
+  --brass: #e2b86b;
+  --signal: #8fd6a9;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--night); color: var(--cream); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; background: radial-gradient(1200px 600px at 85% -10%, rgba(226,184,107,0.10), transparent 60%), radial-gradient(900px 500px at -10% 110%, rgba(143,155,184,0.10), transparent 60%); }
+main { position: relative; max-width: 1120px; margin: 0 auto; padding-block: 48px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.board { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+.tile { background: var(--night-2); border: 1px solid var(--line); border-radius: 18px; padding: 24px; min-width: 0; position: relative; overflow: hidden; }
+.span-4 { grid-column: span 4; } .span-3 { grid-column: span 3; } .span-2 { grid-column: span 2; } .span-6 { grid-column: span 6; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+.hero { padding: 36px 32px; background: linear-gradient(160deg, var(--night-3), var(--night-2) 70%); }
+.hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(44px, 8vw, 88px); line-height: 0.92; letter-spacing: -0.03em; margin: 0; text-wrap: balance; }
+.hero h1 span { display: block; color: var(--brass); }
+.role { margin: 22px 0 0; font-size: 19px; color: var(--cream-dim); max-width: 40ch; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.badge { font-family: var(--mono); font-size: 12.5px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); color: var(--cream-dim); background: rgba(11,20,40,0.5); }
+.badge.live { color: var(--signal); border-color: rgba(143,214,169,0.35); }
+.badge.live::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--signal); margin-right: 8px; vertical-align: 1px; }
+.terminal { background: #070d1b; font-family: var(--mono); font-size: 14px; line-height: 1.75; }
+.terminal .dots { display: flex; gap: 6px; margin-bottom: 16px; }
+.terminal .dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.terminal .dots i:first-child { background: var(--brass); }
+.term-line { white-space: pre-wrap; overflow-wrap: anywhere; }
+.prompt { color: var(--brass); }
+.out { color: var(--cream-dim); }
+.cursor { display: inline-block; width: 8px; height: 1.1em; background: var(--cream); vertical-align: -3px; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+h2 { font-family: var(--display); font-weight: 600; font-size: 26px; line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.01em; }
+p { margin: 0; }
+.about p + p { margin-top: 12px; }
+.lead { color: var(--cream-dim); max-width: 62ch; }
+.lead + .lead { margin-top: 12px; }
+.small-h { font-size: 21px; }
+.fine { margin-top: 10px; font-size: 13.5px; color: var(--muted); }
+.draft { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--night); background: var(--brass); border-radius: 4px; padding: 2px 7px; margin-left: 10px; vertical-align: 4px; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.timeline li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 14px; padding-top: 18px; border-top: 1px solid var(--line); }
+.timeline li:first-child { border-top: 0; padding-top: 0; }
+.when { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 2px; }
+.what b { font-weight: 500; display: block; }
+.what span { color: var(--cream-dim); font-size: 15px; }
+.stack { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--mono); font-size: 13px; padding: 7px 12px; border-radius: 10px; background: var(--night-3); border: 1px solid var(--line); color: var(--cream); }
+.clock { display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+.time { font-family: var(--display); font-weight: 800; font-size: 54px; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.place { color: var(--cream-dim); font-size: 15px; }
+.dns { font-family: var(--mono); font-size: 13px; color: var(--cream-dim); overflow-x: auto; }
+.dns table { border-collapse: collapse; width: 100%; min-width: 320px; }
+.dns td { padding: 6px 10px 6px 0; white-space: nowrap; border-top: 1px solid var(--line); }
+.dns tr:first-child td { border-top: 0; }
+.dns td:nth-child(2) { color: var(--brass); }
+.links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.link { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; text-decoration: none; color: var(--cream); background: var(--night-2); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; transition: border-color .2s, transform .2s, background .2s; min-width: 0; }
+.link:hover { border-color: var(--brass); background: var(--night-3); transform: translateY(-2px); }
+.link:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.link .label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.link .handle { font-family: var(--display); font-weight: 600; font-size: 22px; overflow-wrap: anywhere; }
+.link .arrow { color: var(--brass); }
+footer { margin-top: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+@media (max-width: 860px) {
+  .board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .span-4, .span-3, .span-6 { grid-column: 1 / -1; }
+  .span-2 { grid-column: span 1; }
+  .links { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  main { padding-block: 24px 32px; }
+  .span-2 { grid-column: 1 / -1; }
+  .hero { padding: 28px 22px; }
+  .tile { padding: 20px; }
+  .timeline li { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) { .cursor { animation: none; } .link { transition: none; } }
+</style>
+
+</head>
+<body>
+<main>
+  <div class="board">
+    <section class="tile span-4 hero" aria-label="Introduction">
+      <p class="eyebrow">molenda.uk</p>
+      <h1>Mateusz <span>Molenda</span></h1>
+      <p class="role">DevOps, platform and cloud engineer at NatWest Group, supporting the digital transformation and cloud migration of Bankline Direct.</p>
+      <div class="badges">
+        <span class="badge live">Open to conversations</span>
+        <span class="badge">London, UK</span>
+        <span class="badge">NatWest Group</span>
+        <span class="badge">BSc CS · Exeter</span>
+      </div>
+    </section>
+
+    <section class="tile span-2 terminal" aria-label="Terminal">
+      <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="term-line"><span class="prompt">$</span> whoami</div>
+      <div class="term-line out">mateusz</div>
+      <div class="term-line"><span class="prompt">$</span> cat role.txt</div>
+      <div class="term-line out">devops · platform · cloud</div>
+      <div class="term-line"><span class="prompt">$</span> terraform plan</div>
+      <div class="term-line out">No changes. Your infrastructure matches the configuration.</div>
+      <div class="term-line"><span class="prompt">$</span> <span class="cursor" aria-hidden="true"></span></div>
+    </section>
+
+    <section class="tile span-3 about" aria-labelledby="about-h">
+      <p class="eyebrow">About</p>
+      <h2 id="about-h">Pipelines, platforms and the tooling in between</h2>
+      <p class="lead">I build the CI foundations, cloud self-service and automation that let engineering teams ship safely in a regulated bank. Right now that means writing CTL, a Go command-line toolkit behind our new CI platform, and building self-service AWS catalogues for data and integration teams.</p>
+      <p class="lead">Before DevOps I worked across platform engineering, SRE and QA automation, so I care about the whole path from commit to production.</p>
+    </section>
+
+    <section class="tile span-3" aria-labelledby="stack-h">
+      <p class="eyebrow">Stack</p>
+      <h2 id="stack-h">Tools I work with</h2>
+      <div class="stack">
+        <span class="chip">Go</span>
+        <span class="chip">Terraform</span>
+        <span class="chip">AWS</span>
+        <span class="chip">Kubernetes</span>
+        <span class="chip">Argo</span>
+        <span class="chip">Docker</span>
+        <span class="chip">GitLab CI</span>
+        <span class="chip">Linux</span>
+        <span class="chip">Bash</span>
+        <span class="chip">Python</span>
+        <span class="chip">Java · Spring Boot</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">Cypress</span>
+        <span class="chip">Cucumber</span>
+      </div>
+    </section>
+
+    <section class="tile span-4" aria-labelledby="exp-h">
+      <p class="eyebrow">Experience</p>
+      <h2 id="exp-h">NatWest Group, City of London</h2>
+      <ol class="timeline">
+        <li><span class="when">Mar 2026 – now</span><div class="what"><b>DevOps Engineer</b><span>Building CTL, a Go CLI toolkit powering the new CI foundation. Self-service AWS catalogues for data analytics and integration. Secure, maintainable pipelines for Node micro-frontend services, plus product security and compliance.</span></div></li>
+        <li><span class="when">Sep 2025 – Mar 2026</span><div class="what"><b>QA Automation Engineer</b></div></li>
+        <li><span class="when">Apr 2025 – Sep 2025</span><div class="what"><b>Site Reliability Engineer</b></div></li>
+        <li><span class="when">Apr 2024 – Apr 2025</span><div class="what"><b>Platform Engineer</b></div></li>
+        <li><span class="when">Oct 2023 – Apr 2026</span><div class="what"><b>Consultant · Sparta Global</b></div></li>
+      </ol>
+    </section>
+
+    <section class="tile span-2 clock" aria-labelledby="clock-h">
+      <p class="eyebrow" id="clock-h">Local time</p>
+      <div class="time" id="time">--:--</div>
+      <p class="place">London · <span id="tz">GMT</span></p>
+    </section>
+
+    <section class="tile span-2" aria-labelledby="edu-h">
+      <p class="eyebrow">Education</p>
+      <h2 id="edu-h" class="small-h">BSc Computer Science</h2>
+      <p class="lead">University of Exeter, 2020 – 2023</p>
+      <p class="fine">Chess, Computer Science and X-AI societies</p>
+    </section>
+
+    <section class="tile span-2" aria-labelledby="teach-h">
+      <p class="eyebrow">Teaching</p>
+      <h2 id="teach-h" class="small-h">Explaining things well</h2>
+      <p class="lead">Python teaching assistant at ExCode Exeter, and a teaching internship with Teach SouthEast.</p>
+    </section>
+
+    <section class="tile span-2" aria-labelledby="lang-h">
+      <p class="eyebrow">Languages</p>
+      <h2 id="lang-h" class="small-h">Polish · English</h2>
+      <p class="lead">Plus Go, Python, Java, Bash and the occasional YAML argument.</p>
+    </section>
+  </div>
+
+  <nav class="links" aria-label="Find me elsewhere" style="margin-top:14px">
+    <a class="link" href="https://github.com/Piasttorun" target="_blank" rel="noopener">
+      <span class="label">GitHub</span>
+      <span class="handle">Piasttorun <span class="arrow">↗</span></span>
+    </a>
+    <a class="link" href="https://www.linkedin.com/in/mateusz-molenda-639baa1b8" target="_blank" rel="noopener">
+      <span class="label">LinkedIn</span>
+      <span class="handle">Mateusz Molenda <span class="arrow">↗</span></span>
+    </a>
+    <a class="link" href="mailto:mateusz@molenda.uk">
+      <span class="label">Email</span>
+      <span class="handle">mateusz@molenda.uk</span>
+    </a>
+  </nav>
+
+  <footer>
+    <span>© <span id="year">2026</span> Mateusz Molenda</span>
+    <span>Static HTML on Cloudflare Pages</span>
+  </footer>
+</main>
+
+<script>
+(function () {
+  const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", hour: "2-digit", minute: "2-digit" });
+  const tzFmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", timeZoneName: "short" });
+  function tick() {
+    const now = new Date();
+    document.getElementById("time").textContent = fmt.format(now);
+    const part = tzFmt.formatToParts(now).find(p => p.type === "timeZoneName");
+    if (part) document.getElementById("tz").textContent = part.value;
+  }
+  tick(); setInterval(tick, 15000);
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+
+</body>
+</html>
